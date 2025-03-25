@@ -22,6 +22,19 @@ USAGE
     exit 1
 }
 
+environment_variables()
+{
+    cat << USAGE >&2
+    WAITFORIT_HOST
+    WAITFORIT_PORT
+    WAITFORIT_STRICT
+    WAITFORIT_QUIET
+    WAITFORIT_TIMEOUT
+    WAITFORIT_CLI
+USAGE
+    exit 1
+}
+
 wait_for()
 {
     if [[ $WAITFORIT_TIMEOUT -gt 0 ]]; then
@@ -123,6 +136,9 @@ do
         ;;
         --help)
         usage
+        ;;
+        --list-env-vars)
+        environment_variables
         ;;
         *)
         echoerr "Unknown argument: $1"
